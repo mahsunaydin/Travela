@@ -1,0 +1,157 @@
+﻿@{
+    Layout = "/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+@{
+    var chartDataJson = ViewBag.ChartDataJson ?? "[]"; // Boş kalmaması için varsayılan boş dizi
+}
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link rel="icon" href="~/pluto/images/fevicon.png" type="image/png" />
+<!-- bootstrap css -->
+<link rel="stylesheet" href="~/pluto/css/bootstrap.min.css" />
+<!-- site css -->
+<link rel="stylesheet" href="~/pluto/style.css" />  
+<!-- responsive css -->
+<link rel="stylesheet" href="~/pluto/css/responsive.css" />
+<!-- color css -->
+<link rel="stylesheet" href="~/pluto/css/colors.css" />
+<!-- select bootstrap -->
+<link rel="stylesheet" href="~/pluto/css/bootstrap-select.css" />
+<!-- scrollbar css -->
+<link rel="stylesheet" href="~/pluto/css/perfect-scrollbar.css" />
+<!-- custom css -->
+<link rel="stylesheet" href="~/pluto/css/custom.css" />
+
+@Html.Raw("<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css'>")
+
+
+
+<div class="main-panel">
+    <div class="content-wrapper pb-0">
+
+        <div class="page-header flex-wrap">
+            <h3 class="mb-0">
+                Admin Paneli <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block"></span>
+            </h3>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xl-12 grid-margin">
+                <div class="row">
+
+                    <div class="col-xl-3 col-lg-12 strech-card grid-margin-sm-0 pb-sm-3">
+                        <div class="card bg-warning">
+                            <div class="card-body px-3 py-4">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="color-card">
+                                        <p class="mb-0 color-card-head text-black h5" style="color:black;">Turlar</p><br />
+                                        <h2 class="text-black">
+                                            @ViewBag.categoryCount <span class="h5">Adet</span>
+                                        </h2>
+                                    </div>
+                                    <i class="card-icon-indicator mdi mdi-road bg-inverse-icon-warning h1 text-white"></i>
+                                </div>
+                                <h6 class="text-black">Tur Sayısı</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-12 strech-card grid-margin-sm-0 pb-sm-3">
+                        <div class="card bg-danger">
+                            <div class="card-body px-3 py-4">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="color-card">
+                                        <p class="mb-0 color-card-head text-white h5">Rotalar</p><br />
+                                        <h2 class="text-white">
+                                            @ViewBag.routeCount <span class="h5">Adet</span>
+                                        </h2>
+                                    </div>
+                                    <i class="card-icon-indicator mdi mdi-directions bg-inverse-icon-warning h1 text-white"></i>
+                                </div>
+                                <h6 class="text-white">Rota Sayısı</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-12 strech-card grid-margin-sm-0 pb-sm-3">
+                        <div class="card bg-info">
+                            <div class="card-body px-3 py-4">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="color-card">
+                                        <p class="mb-0 color-card-head text-white h5">Hizmetler</p><br />
+                                        <h2 class="text-white">
+                                            @ViewBag.serviceCount <span class="h5">Adet</span>
+                                        </h2>
+                                    </div>
+                                    <i class="card-icon-indicator mdi mdi-briefcase bg-inverse-icon-warning h1 text-white"></i>
+                                </div>
+                                <h6 class="text-white">Hizmet Sayısı</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-12 strech-card grid-margin-sm-0 pb-sm-3">
+                        <div class="card bg-success">
+                            <div class="card-body px-3 py-4">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="color-card">
+                                        <p class="mb-0 color-card-head text-white h5">Mesajlar</p><br />
+                                        <h2 class="text-white">
+                                            @ViewBag.messageCount <span class="h5">Adet</span>
+                                        </h2>
+                                    </div>
+                                    <i class="card-icon-indicator mdi mdi-comment-text bg-inverse-icon-warning h1 text-white"></i>
+                                </div>
+                                <h6 class="text-white">Mesaj Sayısı</h6>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            @*ana sayfanın slider alanı*@
+            @await Component.InvokeAsync("_AdminLayoutCarouselComponent")
+
+            @* grafik BÖLÜMÜ*@
+            <div class="col-md-6">
+                <!-- Google Charts div -->
+                <div id="bar_chart" style="width: 100%; height: 95%;"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Category');
+        data.addColumn('number', 'adet');
+
+        // C# tarafından oluşturulan JSON verilerini kullan
+        var jsonData = @Html.Raw(chartDataJson);
+
+        // JSON verilerini Google Charts DataTable formatına dönüştürme
+        jsonData.forEach(function (item) {
+            data.addRow([item.categoryName, item.adet]);
+        });
+
+        var options = {
+            title: 'İstatistikler',
+            legend: { position: 'none' }
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('bar_chart'));
+        chart.draw(data, options);
+    }
+</script>

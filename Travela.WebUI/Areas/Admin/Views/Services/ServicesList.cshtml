@@ -1,0 +1,130 @@
+﻿@model List<ResultServiceDto>
+
+@{
+    ViewData["Title"] = "ServicesList";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int counter = 0;
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Hizmetler Listesi</h2>
+                        </div>
+                    </div>
+                    <div class="table_section padding_infor_info">
+                        <a href="/Admin/Categories/CreateCategories" class="btn btn-primary"><i class="fa fa-plus"></i>&nbsp;Yeni Hizmet Ekle</a>
+                        <br /><br />
+                        <div class="table-responsive-sm">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="color:black">#</th>
+                                        <th style="color:black">Hizmet Başlık</th>
+                                        <th style="color:black">Hizmet Açıklama</th>
+                                        <th style="color:black">Güncelle</th>
+                                        <th style="color:black">Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        counter++;
+
+                                        <tr>
+                                            <td style="color:black;vertical-align:middle;">@counter</td>
+                                            <td style="color:black;vertical-align:middle;">@item.Title</td>
+                                            <td style="color:black;vertical-align:middle;">@item.Description</td>
+                                            <td style="color:black;vertical-align:middle;"><a href="/Admin/Services/UpdateServices/@item.ServiceId" class="btn btn-warning"><i class="fa fa-pencil"></i>&nbsp;Güncelle</a></td>
+                                            <td style="color:black;vertical-align:middle;"><a href="javascript:void(0);" onclick="confirmDelete(@item.ServiceId)" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Sil</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="deleteModal" style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5);">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 10px;">
+        <p>Bu kaydı silmek istediğinizden emin misiniz?</p>
+        <button onclick="deleteService()" class="btn btn-success">Evet</button>
+        <button onclick="closeModal()" class="btn btn-danger">İptal</button>
+    </div>
+</div>
+
+<style>
+    /* Modal için butonları özelleştir */
+    #deleteModal button {
+        margin: 5px;
+        padding: 10px 15px; /* Buton boyutlarını ayarlama */
+        border-radius: 5px; /* Yuvarlatılmış köşeler */
+        border: none; /* Kenarlık kaldırma */
+        font-size: 16px; /* Yazı boyutu */
+        cursor: pointer; /* Tıklanabilir simge */
+    }
+
+    /* "Evet" butonu için yeşil arka plan */
+    #deleteModal .btn-success {
+        background-color: #28a745;
+        color: white;
+    }
+
+    /* "İptal" butonu için kırmızı arka plan */
+    #deleteModal .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    /* Modal kutusu */
+    #deleteModal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+        /* Modal içeriği */
+        #deleteModal .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+</style>
+
+<script>
+    var currentId;
+
+    function confirmDelete(id) {
+        // Modal'ı aç
+        currentId = id;
+        document.getElementById('deleteModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        // Modal'ı kapat
+        document.getElementById('deleteModal').style.display = 'none';
+    }
+
+    function deleteService() {
+        // Silme işlemi yapılacak URL
+        window.location.href = "/Admin/Services/DeleteServices/" + currentId;
+    }
+</script>
+

@@ -1,0 +1,79 @@
+﻿@model List<ResultCarouselDto>
+@{
+    int counter = 0;
+    string id = "testimonial_slider_" + Guid.NewGuid().ToString("N");
+}
+
+<div class="col-md-6">
+    <div class="dark_bg full margin_bottom_30">
+
+        <div class="full graph_head">
+            <div class="heading1 margin_0">
+                <h2>Ana Sayfa Slider</h2>
+            </div>
+        </div>
+
+        <div class="full graph_revenue">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content testimonial">
+
+                        <div id="testimonial_slider" class="carousel slide" data-ride="carousel">
+
+                            <!-- Wrapper for carousel items -->
+
+                            <div class="carousel-inner">
+                                @foreach (var item in Model)
+                                {
+                                    counter++;
+
+                                    <div class="item carousel-item @(counter == 1 ? "active" : "")">
+                                        <p class="overview"><b>@item.Title</b>@item.Title1</p>
+                                        <p class="testimonial">@item.Subtitle</p>
+                                        <div class="img-box" style="width:480px; height:270px;"><img src="@item.imageUrl" alt=""></div>
+                                    </div>
+                                }
+                            </div>
+
+
+
+                            <!-- Carousel controls -->
+                            <a class="carousel-control-prev" href="#testimonial_slider" data-slide="prev">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a class="carousel-control-next" href="#testimonial_slider" data-slide="next">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- wow animation -->
+<script src="js/animate.js"></script>
+<!-- select country -->
+<script src="js/bootstrap-select.js"></script>
+<!-- owl carousel -->
+<script src="js/owl.carousel.js"></script>
+<!-- chart js -->
+<script src="js/Chart.min.js"></script>
+<script src="js/Chart.bundle.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/analyser.js"></script>
+<!-- nice scrollbar -->
+<script src="js/perfect-scrollbar.min.js"></script>
+<script>
+    var ps = new PerfectScrollbar('#sidebar');
+</script>
+<!-- custom js -->
+<script src="js/custom.js"></script>
+<script src="js/chart_custom_style1.js"></script>

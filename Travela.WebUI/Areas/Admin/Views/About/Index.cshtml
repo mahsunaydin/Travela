@@ -1,0 +1,55 @@
+﻿@model List<ResultAboutDto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Hakkımızda Sayfası Güncelle</h2>
+                        </div>
+                    </div>
+                    <div class="table_section padding_infor_info">
+                        <div class="table-responsive-sm">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="color:black">Başlık</th>
+                                        <th style="color:black">Alt Başlık</th>
+                                        <th style="color:black">Alt Başlık-1</th>
+                                        <th style="color:black">Açıklama</th>
+                                        <th style="color:black">Görsel</th>
+                                        <th style="color:black">Güncelle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td style="color:black;vertical-align:middle">@item.Title</td>
+                                            <td style="color:black;vertical-align:middle">@item.SubTitle1</td>
+                                            <td style="color:black;vertical-align:middle">@item.SubTitle</td>
+                                            <td style="color:black;vertical-align:middle">@item.Description</td>
+                                            <td style="color:black;vertical-align:middle"><img src="@item.ImageUrl" style="width:150px; height:100px" /></td>
+                                            <td style="color:black;vertical-align:middle"><a href="/Admin/About/UpdateAbout/@item.AboutId" class="btn btn-warning"><i class="fa fa-pencil"></i>&nbsp;Güncelle</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

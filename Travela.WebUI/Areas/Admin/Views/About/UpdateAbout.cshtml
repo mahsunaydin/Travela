@@ -1,0 +1,53 @@
+﻿@model UpdateAboutDto
+
+@{
+    ViewData["Title"] = "UpdateAbout";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Hakkımda Bilgisi Güncelleme</h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post">
+                                <input type="hidden" asp-for="aboutId" class="form-control" />
+
+                                <label style="color:black">Başlık</label>
+                                <input type="text" asp-for="title" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Alt Başlık1</label>
+                                <input type="text" asp-for="subTitle1" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Alt Başlık</label>
+                                <input type="text" asp-for="subTitle" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Görsel Yolu</label>
+                                <input type="text" asp-for="imageUrl" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Açıklama</label>
+                                <textarea rows="4" asp-for="description" class="form-control" style="color:black"></textarea>
+                                <br />
+
+                                <button class="btn btn-primary" style="background-color:navy">Güncelle</button>
+                                <a class="btn btn-danger" href="/Admin/About/Index">İptal</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

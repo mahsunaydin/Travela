@@ -1,0 +1,156 @@
+﻿@model List<ResultGuideDto>
+
+@{
+    ViewData["Title"] = "GuidesList";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int counter = 0;
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Rehber Listesi</h2>
+                        </div>
+                    </div>
+                    <div class="table_section padding_infor_info">
+                        <a href="/Admin/Guide/CreateGuides" class="btn btn-primary"><i class="fa fa-plus"></i><span>&nbsp;Yeni Rehber Ekle</span></a>
+                        <br /><br />
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped table-hover" id="GuidesList">
+                                <thead>
+                                    <tr style="color:black; vertical-align:middle;">
+                                        <th>#</th>
+                                        <th>Adı Soyadı</th>
+                                        <th>Facebook Adresi</th>
+                                        <th>X (Twitter) Adresi</th>
+                                        <th>Instagram Adresi</th>
+                                        <th>Linkedin Adresi</th>
+                                        <th>Görseli</th>
+                                        <th>Güncelle</th>
+                                        <th>Sil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        counter++;
+
+                                        <tr style="color:black;vertical-align:middle;">
+                                            <td style="vertical-align:middle;">@counter</td>
+                                            <td style="vertical-align:middle;">@item.GuideNameSurname</td>
+                                            <td style="vertical-align:middle;">
+                                                <a style="color:darkblue;" href="@item.facebookUrl">Facebook'ta Aç</a>
+                                            </td>
+                                            <td style="vertical-align:middle;">
+                                                <a style="color:darkblue;" href="@item.twitterUrl">X'te Aç</a>
+                                            </td>
+                                            <td style="vertical-align:middle;">
+                                                <a style="color:darkblue;" href="@item.instagramUrl">Instagram'da Aç</a>
+                                            </td>
+                                            <td style="vertical-align:middle;">
+                                                <a style="color:darkblue;" href="@item.linkedinUrl">Linkedin'de Aç</a>
+                                            </td>
+                                            <td style="vertical-align:middle;">
+                                                <image src="@item.ImageUrl" style="width:110px;height:150px;"></image>
+                                            </td>
+                                            <td style="color:black; vertical-align:middle;">
+                                                <a href="/Admin/Guide/UpdateGuides/@item.GuideId" class="btn btn-warning">
+                                                    <i class="fa fa-pencil"></i>&nbsp;Güncelle
+                                                </a>
+                                            </td>
+                                            <td style="color:black;vertical-align:middle;"><a href="javascript:void(0);" onclick="confirmDelete(@item.GuideId,'@item.GuideNameSurname')" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Sil</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="deleteModal" style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5);">
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 10px;">
+        <p id="deleteModalMessage">Bu kaydı silmek istediğinizden emin misiniz?</p>
+        <button onclick="deleteService()" class="btn btn-success">Evet</button>
+        <button onclick="closeModal()" class="btn btn-danger">İptal</button>
+    </div>
+</div>
+
+<style>
+    /* Modal için butonları özelleştir */
+    #deleteModal button {
+        margin: 5px;
+        padding: 10px 15px; /* Buton boyutlarını ayarlama */
+        border-radius: 5px; /* Yuvarlatılmış köşeler */
+        border: none; /* Kenarlık kaldırma */
+        font-size: 16px; /* Yazı boyutu */
+        cursor: pointer; /* Tıklanabilir simge */
+    }
+
+    /* "Evet" butonu için yeşil arka plan */
+    #deleteModal .btn-success {
+        background-color: #28a745;
+        color: white;
+    }
+
+    /* "İptal" butonu için kırmızı arka plan */
+    #deleteModal .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    /* Modal kutusu */
+    #deleteModal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+        /* Modal içeriği */
+        #deleteModal .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+</style>
+
+<script>
+    var currentId;
+
+    function confirmDelete(id,name) {
+        // Modal'ı aç
+        currentId = id;
+        document.getElementById('deleteModalMessage').innerText = `"${name} kaydını silmek istediğinizden emin misiniz?"`;
+        document.getElementById('deleteModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        // Modal'ı kapat
+        document.getElementById('deleteModal').style.display = 'none';
+    }
+
+    function deleteService() {
+        // Silme işlemi yapılacak URL
+        window.location.href = "/Admin/Guide/DeleteGuides/" + currentId;
+    }
+</script>

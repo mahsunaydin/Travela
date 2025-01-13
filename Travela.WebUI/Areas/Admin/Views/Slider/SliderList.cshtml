@@ -1,0 +1,55 @@
+﻿@model List<Travela.WebUI.Dtos.Carousel.ResultCarouselDto>
+
+@{
+    ViewData["Title"] = "SliderList";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int counter = 0;
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Slider Listesi</h2>
+                        </div>
+                    </div>
+                    <div class="table_section padding_infor_info">
+                        <div class="table-responsive-sm">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="color:black">#</th>
+                                        <th style="color:black">Slider Başlık</th>
+                                        <th style="color:black">Slider Başlık-1</th>
+                                        <th style="color:black">Slider Alt Başlık</th>
+                                        <th style="color:black">Slider Görsel</th>
+                                        <th style="color:black">Güncelle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        counter++;
+
+                                        <tr>
+                                            <td style="color:black;vertical-align:middle">@counter</td>
+                                            <td style="color:black;vertical-align:middle">@item.Title</td>
+                                            <td style="color:black;vertical-align:middle">@item.Title1</td>
+                                            <td style="color:black;vertical-align:middle">@item.Subtitle</td>
+                                            <td style="color:black;vertical-align:middle"><img src="@item.imageUrl" style="width:300px; height:200px" /></td>
+                                            <td style="color:black;vertical-align:middle"><a href="/Admin/Slider/UpdateSlider/@item.CarouselID" class="btn btn-warning"><i class="fa fa-pencil"></i>&nbsp;Güncelle</a></td> 
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,40 @@
+﻿@model ResultContactDto
+
+@{
+    ViewData["Title"] = "ContactsDetail";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2><b>Mesaj Detayı</b></h2>
+                        </div>
+                    </div>
+                    <div class="card-body" style="color:black">
+                        <table class="table" style="color:black; width: 100%;">
+                            <tr>
+                                <th style="width: 30%;">Gönderen</th>
+                                <td>@Model.NameSurname</td>
+                            </tr>
+                            <tr>
+                                <th>Konu Başlığı</th>
+                                <td>@Model.Subject</td>
+                            </tr>
+                            <tr>
+                                <th>Mesaj Detayı</th>
+                                <td><p style="color:black">@Model.Message</p></td>
+                            </tr>
+                        </table>
+                        <a href="/Admin/Contact/ContactsList" class="btn btn-info" style="margin-top: 20px;"><i class="fa fa-undo"></i>&nbsp; Mesaj Listesine Dön</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

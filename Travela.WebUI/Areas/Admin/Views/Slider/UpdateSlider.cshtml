@@ -1,0 +1,51 @@
+﻿@model UpdateCarouselDto
+
+@{
+    ViewData["Title"] = "UpdateSlider";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Slider Güncelleme</h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post">
+                                <input type="hidden" asp-for="CarouselId" class="form-control" />
+                                <input type="hidden" asp-for="UsePage" value="main" class="form-control" />
+
+                                <label style="color:black"><b>Slider Başlık</b></label>
+                                <input type="text" asp-for="Title" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black"><b>Slider Başlık-1</b></label>
+                                <input type="text" asp-for="Title1" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black"><b>Slider Alt Başlık</b></label>
+                                <textarea rows="4" asp-for="Subtitle" class="form-control" style="color:black"></textarea>
+                                <br />
+
+                                <label style="color:black"><b>Slider Görsel Yolu</b></label>
+                                <input type="text" asp-for="ImageUrl" class="form-control" style="color:black" />
+                                <br />
+
+                                <button class="btn btn-primary" style="background-color:navy">Güncelle</button>
+                                <a href="/Admin/Slider/SliderList" class="btn btn-danger">İptal</a>
+
+                            </form>
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

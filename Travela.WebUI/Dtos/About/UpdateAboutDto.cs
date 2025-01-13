@@ -1,0 +1,12 @@
+﻿namespace Travela.WebUI.Dtos.About
+{
+    public class UpdateAboutDto
+    {
+        public int aboutId { get; set; }
+        public string title { get; set; }
+        public string subTitle { get; set; }
+        public string subTitle1 { get; set; }
+        public string description { get; set; }
+        public string imageUrl { get; set; }
+    }
+}

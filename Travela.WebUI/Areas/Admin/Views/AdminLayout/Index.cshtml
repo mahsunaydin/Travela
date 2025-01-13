@@ -1,0 +1,178 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Admin Paneli - MAYDIN</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <link rel="icon" href="~/pluto/images/fevicon.png" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="~/pluto/css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="~/pluto/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="~/pluto/css/responsive.css" />
+    <!-- color css -->
+    <link rel="stylesheet" href="~/pluto/css/colors.css" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="~/pluto/css/bootstrap-select.css" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="~/pluto/css/perfect-scrollbar.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="~/pluto/css/custom.css" />
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar-header">
+                        <div class="logo_section">
+                            <a href="/Admin/Dashboard/Index"><img class="logo_icon img-responsive" src="~/pluto/images/logo/logo_iconM.png" alt="#" /></a>
+                        </div>
+                    </div>
+                    <div class="sidebar_user_info">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+                            <div class="user_img"><img class="img-responsive" src="~/pluto/images/layout_img/profilePhoto.jpg" alt="#" /></div>
+                            <div class="user_info">
+                                <h6>@ViewBag.userName</h6>
+                                <p><span class="online_animation"></span> Aktif</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>Genel</h4>
+                    <ul class="list-unstyled components">
+                        <li><a href="/Default/Index"><i class="fa fa-home orange_color"></i><span>Siteye Git</span></a></li>
+                        <li><a href="/Admin/Dashboard/Index"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a></li>
+                        <li><a href="/Admin/Slider/SliderList"><i class="fa fa-arrows"></i> <span>Slider</span></a></li>
+                        <li><a href="/Admin/About/Index"><i class="fa fa-info-circle" style="color:lightskyblue"></i> <span>Hakkımızda</span></a></li>
+                        <li><a href="/Admin/Services/ServicesList"><i class="fa fa-table" style="color:goldenrod"></i> <span>Hizmetler</span></a></li>
+                        <li><a href="/Admin/Categories/CategoriesList"><i class="fa fa-map purple_color2"></i> <span>Turlar</span></a></li>
+                        <li><a href="/Admin/Destination/DestinationsList"><i class="fa fa-road blue2_color"></i> <span>Rotalar</span></a></li>
+                        <li><a href="/Admin/Contact/ContactsList"><i class="fa fa-envelope" style="color:darkorange"></i> <span>Mesajlar</span></a></li>
+                        <li><a href="/Admin/Guide/GuidesList"><i class="fa fa-users" style="color:brown"></i> <span>Rehberler</span></a></li>
+                        <li><a href="/Admin/Testimonial/TestimonialsList"><i class="fa fa-book" style="color:mediumaquamarine"></i> <span>Referanslar</span></a></li>
+                        <li><a href="/Admin/Profile/Index"><i class="fa fa-user" style="color:lawngreen"></i> <span>Profil</span></a></li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- end sidebar -->
+
+
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <a href="/Admin/Dashboard/Index"><img class="img-responsive" src="~/pluto/images/logo/logoM.png" alt="#" /></a>
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">88</span></a></li>
+                                        <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
+
+                                        @if (Convert.ToInt32(ViewBag.messageCount) > 0)
+                                        {
+                                            <li><a href="/Admin/Contact/ContactsList"><i class="fa fa-envelope-o"></i><span class="badge">@ViewBag.messageCount</span></a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a href="/Admin/Contact/ContactsList"><i class="fa fa-envelope-o"></i></a></li>
+                                        }
+                                        
+                                    </ul>
+                                    <ul class="user_profile_dd">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="~/pluto/images/layout_img/profilePhoto.jpg" alt="#" /><span class="name_user">@ViewBag.userName</span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="/Admin/Profile/Index">Profilim</a>
+                                                <form method="post" action="/Admin/Login/Logout">
+                                                    <button class="btn btn-danger" type="submit">
+                                                        <i class="fa fa-sign-out"></i>
+                                                        <span>Çıkış Yap</span>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+                <!-- dashboard inner -->
+                <div class="midde_cont">
+                    <br /><br />
+                    @RenderBody()
+                    <br /><br />
+                    <!-- footer -->
+
+                </div>
+                <div class="container-fluid">
+                    <div class="footer">
+                        <p>
+                            Copyright © 2024 Tüm hakları saklıdır.<br><br>
+                            Travela Admin Panel: <a href="#">Travela</a>
+                        </p>
+                    </div>
+                </div>
+                <!-- end dashboard inner -->
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/pluto/js/jquery.min.js"></script>
+    <script src="~/pluto/js/popper.min.js"></script>
+    <script src="~/pluto/js/bootstrap.min.js"></script>
+    <!-- wow animation -->
+    <script src="~/pluto/js/animate.js"></script>
+    <!-- select country -->
+    <script src="~/pluto/js/bootstrap-select.js"></script>
+    <!-- owl carousel -->
+    <script src="~/pluto/js/owl.carousel.js"></script>
+    <!-- chart js -->
+    <script src="~/pluto/js/Chart.min.js"></script>
+    <script src="~/pluto/js/Chart.bundle.min.js"></script>
+    <script src="~/pluto/js/utils.js"></script>
+    <script src="~/pluto/js/analyser.js"></script>
+    <!-- nice scrollbar -->
+    <script src="~/pluto/js/perfect-scrollbar.min.js"></script>
+    <script>
+        var ps = new PerfectScrollbar('#sidebar');
+    </script>
+    <!-- custom js -->
+    <script src="~/pluto/js/custom.js"></script>
+    <script src="~/pluto/js/chart_custom_style1.js"></script>
+
+
+</body>
+</html>

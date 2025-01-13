@@ -1,0 +1,56 @@
+﻿@model CreateGuideDto
+@{
+    ViewData["Title"] = "CreateGuides";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Rehber Ekleme</h2>
+                        </div>                      
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post">
+                                <label style="color:black">Adı ve Soyadı</label>
+                                <input type="text" asp-for="GuideNameSurname" class="form-control" style="color:black" />
+                                <br />
+
+                                <input type="hidden" asp-for="Designation" class="form-control" value="Rehber" />
+
+                                <label style="color:black">Facebook Adresi</label>
+                                <input type="text" asp-for="facebookUrl" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Twitter Adresi</label>
+                                <input type="text" asp-for="twitterUrl" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Instagram Adresi</label>
+                                <input type="text" asp-for="instagramUrl" class="form-control" style="color:black" />
+                                <br />
+
+                                <labe style="color:black">Linkedin Adresi</labe>
+                                <input type="text" asp-for="linkedinUrl" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Görsel URL Bilgisi</label>
+                                <input type="text" asp-for="ImageUrl" class="form-control" style="color:black" />
+                                <br />
+
+                                <button class="btn btn-primary" style="background-color:#304779">Rehberi Ekle</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>             
+            </div>
+        </div>
+    </div>
+</div>
+

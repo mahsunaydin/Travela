@@ -1,0 +1,63 @@
+﻿@model CreateDestinationDto
+
+@{
+    ViewData["Title"] = "CreateDestinations";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Rota Ekleme</h2>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post">
+                                <label style="color:black">Tur Başlığı</label>
+                                <input type="text" asp-for="subTitle" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Tur Açıklaması</label>
+                                <input type="text" asp-for="description" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Tur Tarihi</label>
+                                <input type="date" asp-for="date" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Ülke</label>
+                                <input type="text" asp-for="country" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Şehir</label>
+                                <input type="text" asp-for="city" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Gün Sayısı</label>
+                                <input type="number" asp-for="countDay" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Kişi Sayısı</label>
+                                <input type="number" asp-for="guestCount" class="form-control" style="color:black" />
+                                <br />
+
+                                <label style="color:black">Tur Görsel Yolu</label>
+                                <input type="text" asp-for="imageUrl" class="form-control" style="color:black" />
+                                <br />
+
+                                <button class="btn btn-primary" style="background-color:navy">Ekle</button>
+                                <a class="btn btn-danger" href="/Admin/Destination/DestinationsList">İptal</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

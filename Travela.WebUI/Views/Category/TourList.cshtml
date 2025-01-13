@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "TourList";
+    Layout = "~/Views/UILayout/Index.cshtml";
+
+    var backgroundImageUrl = "/img/carousel-2.jpg";
+    if(ViewData["BackgroundImage"] != null)
+    {
+        backgroundImageUrl = ViewData["BackgroundImage"].ToString();
+    }
+}
+
+<!-- Navbar Start-->
+<div class="container-fluid position-relative p-0">
+
+    @await Component.InvokeAsync("_UILayoutNavbarComponent")
+
+</div>
+<!-- Navbar End -->
+
+<div class="container-fluid bg-breadcrumb" style="background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url('@backgroundImageUrl');">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h3 class="text-white display-3 mb-4">
+            TURLARIMIZ
+        </h3>
+        <h1 class="text-white">
+            "Her Adımda Yeni Bir Keşif, Her Turda Unutulmaz Anılar!"
+        </h1>
+    </div>
+</div>
+
+@await Component.InvokeAsync("_UILayoutCategoryComponent");
+

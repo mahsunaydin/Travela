@@ -1,0 +1,56 @@
+﻿@model List<ResultContactDto>
+
+@{
+    ViewData["Title"] = "ContactsList";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+    int counter = 0;
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white_shd full margin_bottom_30">
+                    <div class="full graph_head">
+                        <div class="heading1 margin_0">
+                            <h2>Mesajlar Listesi</h2>
+                        </div>
+                    </div>
+                    <div class="table_section padding_infor_info">
+                        <div class="table-responsive-sm">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="color:black;">#</th>
+                                        <th style="color:black;">Adı Soyadı</th>
+                                        <th style="color:black;">Konu</th>
+                                        <th style="color:black;">Mail Adresi</th>
+                                        <th style="color:black;">Konu</th>
+                                        <th style="color:black;">Mesajı Aç</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        counter++;
+
+                                        <tr>
+                                            <td style="color:black;">@counter</td>
+                                            <td style="color:black;">@item.NameSurname</td>
+                                            <td style="color:black;">@item.Subject</td>
+                                            <td style="color:black;">@item.Mail</td>
+                                            <td style="color:black;">@item.Subject</td>
+                                            <td style="color:black;"><a href="/Admin/Contact/ContactsDetail/@item.ContactId" class="btn btn-info"><i class="fa fa-search"></i>&nbsp;Mesajı Oku</a></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
