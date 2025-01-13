@@ -34,7 +34,6 @@ Kullanılan Teknolojiler ve Uygulamalar
 ![4](https://github.com/user-attachments/assets/0490824f-f7ba-4370-954d-f8fc3d1e48c3)
 ![5](https://github.com/user-attachments/assets/2148fcc5-1b47-4d4b-b944-ba11dadef1b7)
 ![6](https://github.com/user-attachments/assets/9a32df6d-877e-4389-b76f-f908b355ea3d)
-![7]![9](https://github.com/user-attachments/assets/1f5a3b3b-3abf-4e37-99a1-f07fbdd560bf)
 ![8](https://github.com/user-attachments/assets/8ab1078e-edc0-4b4c-b2ee-78980579a375)
 ![9](https://github.com/user-attachments/assets/214d2a1f-8995-4de5-99f0-246deb14ab8c)
 ![10](https://github.com/user-attachments/assets/0aeb2806-3432-4874-b383-5b7c0ec07c3b)
